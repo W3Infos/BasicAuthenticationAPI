@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>BASIC AUTHENTICATION</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <ul id="ulUsers"></ul>
+   Username: <input type="text" id="txtUsername" />
+   Password: <input type="password" id="txtPassword" />
+    <br />
+    <button id="btn">Authenticate to get Users</button>
+    <input type="button" id="btnClear" value="Clear" />
+    
+
+    <footer>
+        <script src="Scripts/jquery-3.0.0.min.js"></script>
+        <script src="Scripts/bootstrap.min.js"></script>
+
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var ulUsers = $("#ulUsers");
+                $("#btn").click(function () {
+                    var username = $("#txtUsername").val();
+                    var password = $("#txtPassword").val();
+                    $.ajax({
+                        type: 'GET',
+                        url: 'http://localhost:36748/api/users',
+                        dataType: 'json',
+                        headers:{
+                            'Authorization':'Basic ' + btoa(username + ':' + password)
+                        },
+                        success: function (data) {
+                            ulUsers.empty();
+                            $.each(data, function (index, val) {
+                                var username = val.Username + ' ' + val.Email;
+                                ulUsers.append('<li>'+username+'</li>');
+                            })
+                        },
+                        complete: function (jqXHR) {
+                            if (jqXHR.status == '401') {
+                                ulUsers.empty();
+                                ulUsers.append('<li>' + jqXHR.status +' : ' +jqXHR.statysText+'</li>');
+
+                            }
+                        }
+                    })
+                });
+                $("#btnClear").click(function () {
+                    ulUsers.empty();
+                });
+            });
+
+        </script>
+    </footer>
+
+    
+</body>
+</html>
