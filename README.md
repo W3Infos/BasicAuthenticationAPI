@@ -83,4 +83,4 @@ INSERT INTO [dbo].[Users]
 GO
 
 
-6. Build the project and set startup project on start for API, Web Projects and RUN and tried to login with credentials.
+7. Build the project and set startup project on start for API, Web Projects and RUN and tried to login with credentials.
