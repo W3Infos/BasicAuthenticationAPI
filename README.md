@@ -15,7 +15,7 @@ paste the code from above files.
 
 6. Create index.html file in ClientSerivec project and paste the code from above file
 
-DB details:
+# DB details: tbl1
 CREATE TABLE [dbo].[Users](
 	[UserID] [int] IDENTITY(1,1) NOT NULL,
 	[Username] [nvarchar](200) NULL,
@@ -35,7 +35,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
-
+# DB details: tbl2
 
 CREATE TABLE [dbo].[Employees](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
@@ -51,7 +51,7 @@ PRIMARY KEY CLUSTERED
 
 
 
-Note: Insert some sample data:
+#Note: Insert some sample data:
 
 USE [mmb_db]
 GO
